@@ -1,1 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+  background-color: dimgray;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+mat-card {
+  margin: 30px;
+}
+
+mat-divider {
+  margin: 5px;
+}
+
+.m-auto{
+  margin: auto;
+}
+
+.flex {
+  display: flex;
+}
+
+
+.example-form {
+  min-width: 300px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
