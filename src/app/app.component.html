@@ -5,10 +5,12 @@
 
   <!-- <a routerLink="/" class="nav-link">Lista rachunków</a>
   <a routerLink="/addbill" class="nav-link">Dodaj rachunek</a> -->
-<ng-container *ngIf="bigMenu;else smallmenu">
-  <button mat-raised-button color="accent" routerLink="/category"><mat-icon>account_balance</mat-icon> Dodaj kategorię</button>
+ <ng-container *ngIf="bigMenu;else smallmenu">
+  <button mat-raised-button color="accent" routerLink="/bill"><mat-icon>payments</mat-icon>Lista rachunków</button>
   <mat-divider [vertical]="true"></mat-divider>
-  <button mat-raised-button color="accent" routerLink="/login"><mat-icon>login</mat-icon> Zaloguj się</button>
+  <button mat-raised-button color="accent" routerLink="/category"><mat-icon>account_balance</mat-icon>Dodaj kategorię</button>
+  <mat-divider [vertical]="true"></mat-divider>
+  <button mat-raised-button color="accent" routerLink="/login"><mat-icon>login</mat-icon>Zaloguj się</button>
 </ng-container>
 
 <ng-template #smallmenu>
@@ -16,6 +18,10 @@
     <mat-icon>menu</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="/bill">
+      <mat-icon>payments</mat-icon>
+      <span>Lista rachunków</span>
+    </button>
     <button mat-menu-item routerLink="/category">
       <mat-icon>account_balance</mat-icon>
       <span>Dodaj kategorię</span>

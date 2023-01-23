@@ -19,7 +19,7 @@ export class CategoryComponent implements OnInit {
 
   //data source
   paymentCatagories: Array<PaymentCategory> = new Array<PaymentCategory>();
-  displayedColumns: string[] = ['name', 'recipient', 'account','action'];
+  displayedColumns: string[] = ['name', 'recipient', 'account', 'action'];
 
   //form add category payment
   public formCategory: FormGroup = new FormGroup({
@@ -82,13 +82,13 @@ export class CategoryComponent implements OnInit {
 
   //wstawia  "paste" znaki - tylko cyfry
   public pasteAccounFieldUpdate(event: any): void {
-    setTimeout(()=>{
+    setTimeout(() => {
       // console.log(this.getAccountNumber);
-      let accountNumber : string = this.getAccountNumber?.value;
+      let accountNumber: string = this.getAccountNumber?.value;
       accountNumber = accountNumber.replace(/[^0-9]/g, '');
       // console.log(accountNumber);
       this.getAccountNumber?.setValue(accountNumber);
-    },200);
+    }, 200);
   }
 
 
@@ -98,7 +98,7 @@ export class CategoryComponent implements OnInit {
       accountNumber: this.getAccountNumber?.value
     }
 
-    this.httpService.addBankAccount(accountNumber).subscribe(account=>{
+    this.httpService.addBankAccount(accountNumber).subscribe(account => {
       const paymentCategory: PaymentCategory = {
         name: this.getCategoryName?.value,
         recipient: this.getRecipient?.value,
@@ -106,7 +106,7 @@ export class CategoryComponent implements OnInit {
           id: account.id,
         }
       }
-      this.httpService.addPaymentCategory(paymentCategory).subscribe(category =>{
+      this.httpService.addPaymentCategory(paymentCategory).subscribe(category => {
         console.log(category);
         this.getCategories();
         this.getAccountNumber?.setValue("");
@@ -124,14 +124,15 @@ export class CategoryComponent implements OnInit {
   }
 
   //edycja categrorri uruchomienie okna dialogowego
-  public editPaymentCategory(category: PaymentCategory){
+  public editPaymentCategory(category: PaymentCategory) {
     console.log(category);
-    const dialogRef = this.dialog.open(EditcategoryComponent,{data: {paymentCategory: category}});
-    dialogRef.afterClosed().subscribe(result =>{
+    const dialogRef = this.dialog.open(EditcategoryComponent, { data: { paymentCategory: category } });
+    dialogRef.afterClosed().subscribe(result => {
       console.log(result);
       if (result != undefined) {
-        if (result.bankAccountNumber.accountNumber != category.bankAccountNumber?.accountNumber
-            || result.bankAccountNumber.beginningDateValidityAccountNumber != category.bankAccountNumber?.beginningDateValidityAccountNumber){
+        if (result.bankAccountNumber.accountNumber != category.bankAccountNumber?.accountNumber)
+        // || result.bankAccountNumber.beginningDateValidityAccountNumber != category.bankAccountNumber?.beginningDateValidityAccountNumber)
+        {
           const account: AccountNumber = {
             accountNumber: result.bankAccountNumber.accountNumber,
             beginningDateValidityAccountNumber: result.bankAccountNumber.beginningDateValidityAccountNumber
@@ -140,27 +141,39 @@ export class CategoryComponent implements OnInit {
             const paymentCategoryToUpdate: PaymentCategory = {
               id: category.id,
               name: result.name,
-              recipient : result.recipient,
+              recipient: result.recipient,
               bankAccountNumber: accNum
             }
-            this.httpService.updatePaymentCategory(paymentCategoryToUpdate).subscribe(cat =>{
+            this.httpService.updatePaymentCategory(paymentCategoryToUpdate).subscribe(cat => {
               console.log(cat);
               this.getCategories();
             })
           })
         } else {
-          // jesli nie zmieniono nr banku lub daty
-          const paymentCategoryToUpdate: PaymentCategory = {
-            id: category.id,
-            name: result.name,
-            recipient : result.recipient,
-            bankAccountNumber: category.bankAccountNumber
-
+          // jesli nie zmieniono nr banku
+          {
+            const account: AccountNumber = {
+              id: category.bankAccountNumber?.id,
+              accountNumber: category.bankAccountNumber?.accountNumber,
+              beginningDateValidityAccountNumber: result.bankAccountNumber.beginningDateValidityAccountNumber
+            }
+            this.httpService.updateBankAccount(account).subscribe(accNum => {
+              console.log(accNum);
+            })
           }
-          this.httpService.updatePaymentCategory(paymentCategoryToUpdate).subscribe(cat =>{
-            console.log(cat);
-            this.getCategories();
-          })
+          {
+            const paymentCategoryToUpdate: PaymentCategory = {
+              id: category.id,
+              name: result.name,
+              recipient: result.recipient,
+              bankAccountNumber: category.bankAccountNumber
+
+            }
+            this.httpService.updatePaymentCategory(paymentCategoryToUpdate).subscribe(cat => {
+              console.log(cat);
+              this.getCategories();
+            })
+          }
         }
       }
     })

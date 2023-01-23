@@ -45,3 +45,14 @@ mat-divider {
 .example-full-width {
   width: 100%;
 }
+
+.table-container {
+  position: relative;
+  min-height: 200px;
+  max-height: 400px;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}

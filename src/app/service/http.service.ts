@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AccountNumber, PaymentCategory } from '../model/data-model';
+import { AccountNumber, Bill, PaymentCategory } from '../model/data-model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +21,11 @@ export class HttpService {
     return this.http.post<AccountNumber>(this.apiUrl+"/add/bankaccountnumber",accountNumber);
   }
 
+  //update bank account
+  public updateBankAccount(accountNumber:AccountNumber) : Observable<AccountNumber>{
+    return this.http.put<AccountNumber>(this.apiUrl+"/update/bankaccountnumber",accountNumber);
+  }
+
   //dodanie nowej kategorii płatności
   public addPaymentCategory(category:PaymentCategory) : Observable<PaymentCategory> {
     return this.http.post<PaymentCategory>(this.apiUrl+"/add/category",category);
@@ -34,5 +39,10 @@ export class HttpService {
   //sprawdzenie w rest api poprawności konta nbankowego
   public checkAccountNumber(accNum: string): Observable<boolean> {
     return this.http.get<boolean>(this.apiUrl + '/accountcheck/' + accNum);
+  }
+
+  //pobranie wszystkich rachunkow
+  public getBills(): Observable<Array<Bill>> {
+    return this.http.get<Array<Bill>>(this.apiUrl+"/get/bill");
   }
 }

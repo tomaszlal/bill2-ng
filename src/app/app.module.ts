@@ -10,6 +10,7 @@ import { MaterialDesignerModule } from '../material-designer/material-designer.m
 import { LoginComponent } from './login/login.component';
 import { EditcategoryComponent } from './dialog/edit_category/editcategory/editcategory.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { BillComponent } from './bill/bill.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     AppComponent,
     CategoryComponent,
     LoginComponent,
-    EditcategoryComponent
+    EditcategoryComponent,
+    BillComponent
   ],
   imports: [
     BrowserModule,

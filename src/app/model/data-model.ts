@@ -12,7 +12,7 @@ export interface Page {
   empty?:            boolean;
 }
 
-export interface Content {
+export interface Content{
   id?:                   number;
   paymentCategory?:      PaymentCategory;
   invoiceNumber?:        string;
