@@ -51,3 +51,20 @@ export interface Sort {
   sorted?:   boolean;
   unsorted?: boolean;
 }
+
+export interface Bill {
+  id?:                   number;
+  paymentCategory?:      PaymentCategory;
+  invoiceNumber?:        string;
+  amount?:               number;
+  dateOfIssue?:          Date;
+  dueDate?:              Date;
+  dateOfPayment?:        Date;
+  wasPaid?:              boolean;
+  paymentAccountNumber?: AccountNumber;
+}
+
+
+export interface DialogDataCategory {
+  paymentCategory?:      PaymentCategory;
+}

@@ -1,5 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
+/* @import url('https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&display=swap'); */
+
+
 html,
 body {
   height: 100%;
@@ -17,6 +20,7 @@ body {
 
 mat-card {
   margin: 30px;
+  /* box-shadow: 10px 10px 10px white; */
 }
 
 mat-divider {

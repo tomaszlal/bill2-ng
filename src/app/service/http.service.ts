@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PaymentCategory } from '../model/data-model';
+import { AccountNumber, PaymentCategory } from '../model/data-model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +11,28 @@ export class HttpService {
 
   constructor(private http:HttpClient) { }
 
-
+  //pobranie wszystkich categorii
   public getCategories():Observable<Array<PaymentCategory>>{
     return this.http.get<Array<PaymentCategory>>(this.apiUrl+'/get/categories');
+  }
+
+  //dodanie nowego numeru rachunku
+  public addBankAccount(accountNumber:AccountNumber) : Observable<AccountNumber> {
+    return this.http.post<AccountNumber>(this.apiUrl+"/add/bankaccountnumber",accountNumber);
+  }
+
+  //dodanie nowej kategorii płatności
+  public addPaymentCategory(category:PaymentCategory) : Observable<PaymentCategory> {
+    return this.http.post<PaymentCategory>(this.apiUrl+"/add/category",category);
+  }
+
+  //update kategorii płatności
+  public updatePaymentCategory(category:PaymentCategory) : Observable<PaymentCategory> {
+    return this.http.put<PaymentCategory>(this.apiUrl+"/update/category",category);
+  }
+
+  //sprawdzenie w rest api poprawności konta nbankowego
+  public checkAccountNumber(accNum: string): Observable<boolean> {
+    return this.http.get<boolean>(this.apiUrl + '/accountcheck/' + accNum);
   }
 }

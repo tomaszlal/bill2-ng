@@ -1,0 +1,44 @@
+<h1>Edycja kategorii wydatków</h1>
+<form [formGroup]="formCategory">
+  <div>
+
+    <mat-form-field color="accent" class="example-full-width" appearance="outline">
+      <mat-label>Nazwa kategorii</mat-label>
+      <input type="text" matInput formControlName="categoryName">
+      <mat-error>
+        <!-- *ngIf="getCategoryName?.invalid && getCategoryName?.touched" -->
+        Wprowadź wartość minimum 3 znaki
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field color="accent" class="example-full-width" appearance="outline">
+      <mat-label>Odbiorca</mat-label>
+      <input matInput type="text" formControlName="recipient">
+      <mat-error>
+        Wprowadź wartość minimum 5 znaków
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field color="accent" class="example-full-width" appearance="outline">
+      <mat-label>Numer Konta</mat-label>
+      <input type="text" matInput formControlName="accountNumber" (keypress)="onlyNumber($event)"
+        (paste)="pasteAccounFieldUpdate($event)">
+      <mat-error>
+        Błędny, Nieprawidłowy nr rachunku. Wprowadź 26 cyfr.
+        <!-- *ngIf=" getAccountNumber?.invalid && getAccountNumber?.touched" -->
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field color="accent" class="example-full-width" appearance="outline">
+      <mat-label>Data początkowa obowiązywania nowego rachunku</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dateAccountStart">
+      <mat-hint>MM.DD.YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+  </div>
+  <div align="end">
+    <button mat-button (click)="onNoClick()" mat-raised-button>Anuluj</button>
+    <button mat-button color="warn" (click)="updatePaymentCategory()" [mat-dialog-close]="paymentCategory" [disabled]="formCategory.invalid"
+      mat-raised-button>Zapisz</button>
+    <!-- [mat-dialog-close]="data"  (click)="updatePaymentCategory()"-->
+  </div>
+</form>

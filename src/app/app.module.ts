@@ -8,13 +8,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialDesignerModule } from '../material-designer/material-designer.module';
 import { LoginComponent } from './login/login.component';
+import { EditcategoryComponent } from './dialog/edit_category/editcategory/editcategory.component';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     CategoryComponent,
-    LoginComponent
+    LoginComponent,
+    EditcategoryComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,7 @@ import { LoginComponent } from './login/login.component';
     MaterialDesignerModule
 
   ],
-  providers: [],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'pl-PL' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

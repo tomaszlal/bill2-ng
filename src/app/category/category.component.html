@@ -1,44 +1,54 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>Dodaj kategorię płatności</mat-card-title>
-    <mat-card-subtitle>Utwórz nową kategorię płatności: Wpisz nazwę, nr rachunku i dane odbiorcy
-      rachunku</mat-card-subtitle>
-  </mat-card-header>
-
-  <mat-card-content>
-    <mat-grid-list [cols]="colsGrid" rowHeight="6em">
-      <mat-grid-tile [colspan]="colspan[0]" [rowspan]="1">
-        <mat-form-field color="accent" class="example-full-width" appearance="outline">
-          <mat-label>Nazwa kategorii</mat-label>
-          <input matInput>
-        </mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile [colspan]="colspan[1]" [rowspan]="1">
-        <mat-form-field color="accent" class="example-full-width" appearance="outline">
-          <mat-label>Numer Konta</mat-label>
-          <input matInput>
-        </mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile [colspan]="colspan[2]" [rowspan]="1">
-        <mat-form-field color="accent" class="example-full-width" appearance="outline">
-          <mat-label>Odbiorca</mat-label>
-          <input matInput>
-        </mat-form-field>
-      </mat-grid-tile>
-    </mat-grid-list>
-  </mat-card-content>
-  <mat-divider></mat-divider>
-  <mat-card-actions align="end">
-    <button color="accent" mat-raised-button>Zapisz</button>
-  </mat-card-actions>
-
-
-</mat-card>
+<form [formGroup]="formCategory" >
+  <!-- (submit)="addPaymentCategory()" -->
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Dodaj kategorię płatności</mat-card-title>
+      <mat-card-subtitle>Utwórz nową kategorię płatności: Wpisz nazwę, nr rachunku i dane odbiorcy rachunku</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-grid-list [cols]="colsGrid" rowHeight="6em">
+        <mat-grid-tile [colspan]="colspan[0]" [rowspan]="1">
+          <mat-form-field color="accent" class="example-full-width" appearance="outline">
+            <mat-label>Nazwa kategorii</mat-label>
+            <input type="text" matInput formControlName="categoryName">
+            <mat-error >
+              <!-- *ngIf="getCategoryName?.invalid && getCategoryName?.touched" -->
+              Wprowadź wartość minimum 3 znaki
+            </mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="colspan[1]" [rowspan]="1">
+          <mat-form-field color="accent" class="example-full-width" appearance="outline">
+            <mat-label>Numer Konta</mat-label>
+            <input type="text" matInput formControlName="accountNumber" (keypress)="onlyNumber($event)" (paste)="pasteAccounFieldUpdate($event)">
+            <mat-error >
+              Błędny, Nieprawidłowy nr rachunku. Wprowadź 26 cyfr.
+              <!-- *ngIf=" getAccountNumber?.invalid && getAccountNumber?.touched" -->
+            </mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="colspan[2]" [rowspan]="1">
+          <mat-form-field color="accent" class="example-full-width" appearance="outline">
+            <mat-label>Odbiorca</mat-label>
+            <input matInput type="text" formControlName="recipient" >
+            <mat-error>
+              Wprowadź wartość minimum 5 znaków
+            </mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions align="end">
+      <button type="button"  color="accent" (click)="addPaymentCategory()" [disabled]="formCategory.invalid" mat-raised-button>Zapisz</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
 
 <mat-card>
   <mat-card-header>
     <mat-card-title>Lista odbiorców</mat-card-title>
-    <mat-card-subtitle>Subtitle</mat-card-subtitle>
+    <mat-card-subtitle>Aktualna lista odbiorców płatności za rachunki</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
 
@@ -60,6 +70,15 @@
         <th mat-header-cell *matHeaderCellDef> Numer konta </th>
         <td mat-cell *matCellDef="let element"> {{element.bankAccountNumber.accountNumber}} </td>
       </ng-container>
+
+       <!-- Action Column -->
+       <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button (click)="editPaymentCategory(element)"><mat-icon>edit</mat-icon></button>
+       </td>
+      </ng-container>
+
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
