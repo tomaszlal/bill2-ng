@@ -1,0 +1,50 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Dodaj rachunek</mat-card-title>
+    <mat-card-subtitle>Wprowadź wszystkie wymagane dane</mat-card-subtitle>
+  </mat-card-header>
+  <form [formGroup]="formAddBill">
+    <mat-card-content>
+      <mat-form-field color="accent" class="example-full-width" appearance="outline">
+        <mat-label>Kategoria płatności</mat-label>
+        <mat-select formControlName="categorySelect">
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let category of paymentCatagories" [value]="category">
+            {{category.name}}  nr rachunku:{{category.bankAccountNumber?.accountNumber}}
+          </mat-option>
+        </mat-select>
+        <mat-error>Nie wybrano kategorii płatności</mat-error>
+      </mat-form-field>
+      <mat-form-field color="accent" class="example-full-width" appearance="outline">
+        <mat-label>Numer faktury/tytuł zapłaty</mat-label>
+        <input type="text" matInput formControlName="invoice">
+        <mat-error> Wprowadź wartość minimum 6 znaków </mat-error>
+      </mat-form-field>
+      <mat-form-field color="accent" class="example-full-width" appearance="outline" >
+        <mat-label>Kwota do zapłaty</mat-label>
+        <input type="text" matInput formControlName="amount" style="text-align: right" (keyup)="onlyNumber($event)" >
+        <span matSuffix>&nbsp; zł</span>
+        <mat-error> Kwota nieprawidłowa </mat-error>
+      </mat-form-field>
+      <mat-form-field color="accent" class="example-full-width" appearance="outline">
+        <mat-label>Data wystawienia</mat-label>
+        <input matInput [matDatepicker]="pickerIssue" formControlName="dateOfIssue">
+        <mat-hint>MM.DD.YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="pickerIssue"></mat-datepicker-toggle>
+        <mat-datepicker #pickerIssue></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field color="accent" class="example-full-width" appearance="outline">
+        <mat-label>Data płatności</mat-label>
+        <input matInput [matDatepicker]="pickerPayment" formControlName="dateOfPayment">
+        <mat-hint>MM.DD.YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="pickerPayment"></mat-datepicker-toggle>
+        <mat-datepicker #pickerPayment></mat-datepicker>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-button (click)="onNoClick()" mat-raised-button>Anuluj</button>
+    <button mat-button color="warn" (click)="sendBillToSave()" [mat-dialog-close]="bill"  [disabled]="formAddBill.invalid" mat-raised-button>Zapisz</button>
+    <!--  [disabled]="formCategory.invalid" -->
+    </mat-card-actions>
+  </form>
+</mat-card>

@@ -1,7 +1,7 @@
 import { Component, Host, HostListener, OnInit } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { EditcategoryComponent } from '../dialog/edit_category/editcategory/editcategory.component';
+import { EditcategoryComponent } from '../dialog/editcategory/editcategory.component';
 import { AccountNumber, PaymentCategory } from '../model/data-model';
 import { AccountValidator } from '../service/account.validator';
 

@@ -7,8 +7,8 @@
   <mat-card-content>
 
     <mat-form-field color="accent" class="example-full-width" appearance="outline">
-      <mat-label>Filter</mat-label>
-      <input matInput placeholder="Ex. Mia" #input>
+      <mat-label>Wyszukaj</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="wpisz szukaną frazę" #input>
       <!-- (keyup)="applyFilter($event)" -->
     </mat-form-field>
 
@@ -41,14 +41,13 @@
 
       </table>
 
-      <mat-paginator [pageSizeOptions]="pageSizeOpt" aria-label="Select page of users"></mat-paginator>
-
+      <mat-paginator [pageSizeOptions]="pageSizeOpt" aria-label="Select page of users" color="accent" appearance="outline"></mat-paginator>
 
 
     </div>
   </mat-card-content>
-  <mat-card-actions align="start">
-    <!-- <button mat-button (click)="onAction1">Action1</button> -->
+  <mat-card-actions align="end">
+    <button mat-button (click)="openAddDialog()" color="accent" appearance="outline"><mat-icon>post_add</mat-icon>Nowy rachunek</button>
 
   </mat-card-actions>
   <mat-card-footer>

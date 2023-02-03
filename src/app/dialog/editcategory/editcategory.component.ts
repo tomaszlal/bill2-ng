@@ -16,7 +16,7 @@ export class EditcategoryComponent implements OnInit {
     categoryName: new FormControl('', [Validators.required, Validators.minLength(3)]),
     recipient: new FormControl('', [Validators.required, Validators.minLength(5)]),
     accountNumber: new FormControl('', [Validators.required, Validators.pattern(/^\d{26}?$/)]),
-    dateAccountStart: new FormControl(new Date),
+    dateAccountStart: new FormControl(new Date)
   })
 
   public bankAccountNumber: AccountNumber = {}
@@ -78,7 +78,7 @@ export class EditcategoryComponent implements OnInit {
     } else {
       console.log("daty te different");
       let d :Date = this.formCategory.controls['dateAccountStart'].value;
-      let dataAccount = new Date(d.getFullYear(),d.getMonth(),d.getDate(), d.getHours()+1);// dodanie 1 godziny bo wyświetlał dzień wczesniejszy
+      let dataAccount = new Date(d.getFullYear(),d.getMonth(),d.getDate(), d.getHours()+4 );// dodanie 1 godziny bo wyświetlał dzień wczesniejszy
       this.bankAccountNumber.beginningDateValidityAccountNumber = dataAccount;
     }
 

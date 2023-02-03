@@ -8,9 +8,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialDesignerModule } from '../material-designer/material-designer.module';
 import { LoginComponent } from './login/login.component';
-import { EditcategoryComponent } from './dialog/edit_category/editcategory/editcategory.component';
+import { EditcategoryComponent } from './dialog/editcategory/editcategory.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { BillComponent } from './bill/bill.component';
+import { AddbillComponent } from './dialog/addbill/addbill.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { BillComponent } from './bill/bill.component';
     CategoryComponent,
     LoginComponent,
     EditcategoryComponent,
-    BillComponent
+    BillComponent,
+    AddbillComponent
   ],
   imports: [
     BrowserModule,

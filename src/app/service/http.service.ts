@@ -45,4 +45,8 @@ export class HttpService {
   public getBills(): Observable<Array<Bill>> {
     return this.http.get<Array<Bill>>(this.apiUrl+"/get/bill");
   }
+
+  public addBill(bill:Bill): Observable<Bill> {
+    return this.http.post<Bill>(this.apiUrl+"/add/bill", bill);
+  }
 }
