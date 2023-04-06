@@ -17,6 +17,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from "@angular/material/core";
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatListModule } from '@angular/material/list';
 
 
 
@@ -43,7 +46,10 @@ import { MatSortModule } from '@angular/material/sort';
     MatDatepickerModule,
     MatNativeDateModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatTooltipModule,
+    MatExpansionModule,
+    MatListModule
   ]
 })
 export class MaterialDesignerModule { }

@@ -69,8 +69,11 @@ export class AddbillComponent implements OnInit {
     // this.bill.paymentAccountNumber = //                                           uzupełnić w bill.component
     this.bill.invoiceNumber = this.formAddBill.controls['invoice'].value;
     this.bill.amount = this.formAddBill.controls['amount'].value;
-    this.bill.dateOfIssue = this.formAddBill.controls['dateOfIssue'].value;
-    this.bill.dateOfPayment = this.formAddBill.controls['dateOfPayment'].value;
+    //tymczasowa data do poprawienia bo zapisuje date - jeden dzien
+    let tempData: Date = this.formAddBill.controls['dateOfIssue'].value;
+    this.bill.dateOfIssue = new Date(tempData.getFullYear(),tempData.getMonth(),tempData.getDate(),tempData.getHours()+1);
+    tempData = this.formAddBill.controls['dateOfPayment'].value;
+    this.bill.dateOfPayment = new Date(tempData.getFullYear(),tempData.getMonth(),tempData.getDate(),tempData.getHours()+1);
   }
 
 

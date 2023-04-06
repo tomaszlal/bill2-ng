@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>Usunąć rachunek</h1>
+<div mat-dialog-content>
+  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Operaca nieodwracalna
+      </mat-panel-title>
+      <mat-panel-description>
+       Jeśli chcesz kontynuować rozwiń panel....
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+      <div>Odbiorca: {{billToDelete.paymentCategory?.recipient}}</div>
+      <div>Faktura nr: {{billToDelete.invoiceNumber}}</div>
+      <div></div>
+    <div mat-dialog-actions>
+      <button mat-button [mat-dialog-close]="deleteBill" mat-raised-button>Anuluj</button>
+      <button mat-button mat-raised-button color="warn" (click)="removeBill()" [mat-dialog-close]="deleteBill">USUŃ</button>
+    </div>
+  </mat-expansion-panel>
+</div>

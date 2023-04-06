@@ -68,3 +68,7 @@ export interface Bill {
 export interface DialogDataCategory {
   paymentCategory?:      PaymentCategory;
 }
+
+export interface DialogDataBill {
+  bill?: Bill;
+}

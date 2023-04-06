@@ -78,7 +78,7 @@ export class EditcategoryComponent implements OnInit {
     } else {
       console.log("daty te different");
       let d :Date = this.formCategory.controls['dateAccountStart'].value;
-      let dataAccount = new Date(d.getFullYear(),d.getMonth(),d.getDate(), d.getHours()+4 );// dodanie 1 godziny bo wyświetlał dzień wczesniejszy
+      let dataAccount = new Date(d.getFullYear(),d.getMonth(),d.getDate(), d.getHours()+1 );// dodanie 1 godziny bo wyświetlał dzień wczesniejszy
       this.bankAccountNumber.beginningDateValidityAccountNumber = dataAccount;
     }
 

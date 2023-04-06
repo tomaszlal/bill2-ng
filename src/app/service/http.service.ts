@@ -46,7 +46,15 @@ export class HttpService {
     return this.http.get<Array<Bill>>(this.apiUrl+"/get/bill");
   }
 
+  public getBillsByCategory(categoryId: number): Observable<Array<Bill>> {
+    return this.http.get<Array<Bill>>(this.apiUrl+"/get/bill/"+categoryId);
+  }
+
   public addBill(bill:Bill): Observable<Bill> {
     return this.http.post<Bill>(this.apiUrl+"/add/bill", bill);
+  }
+
+  public deleteBill(billId: number): Observable<boolean> {
+    return this.http.delete<boolean>(this.apiUrl+"/del/bill/"+billId);
   }
 }

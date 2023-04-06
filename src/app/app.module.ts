@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +12,13 @@ import { EditcategoryComponent } from './dialog/editcategory/editcategory.compon
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { BillComponent } from './bill/bill.component';
 import { AddbillComponent } from './dialog/addbill/addbill.component';
+import { registerLocaleData } from '@angular/common';
+
+//do waluty polskiej i lokalizacji
+import localePL from '@angular/common/locales/pl';
+import { DeletebillComponent } from './dialog/deletebill/deletebill.component';
+import { ViewbillComponent } from './dialog/viewbill/viewbill.component';
+registerLocaleData(localePL);
 
 
 @NgModule({
@@ -21,7 +28,9 @@ import { AddbillComponent } from './dialog/addbill/addbill.component';
     LoginComponent,
     EditcategoryComponent,
     BillComponent,
-    AddbillComponent
+    AddbillComponent,
+    DeletebillComponent,
+    ViewbillComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +42,11 @@ import { AddbillComponent } from './dialog/addbill/addbill.component';
     MaterialDesignerModule
 
   ],
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'pl-PL' }],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'pl' },
+    { provide: MAT_DATE_LOCALE, useValue: 'pl-PL' },
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

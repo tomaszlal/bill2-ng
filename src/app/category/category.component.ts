@@ -47,7 +47,7 @@ export class CategoryComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onWindowResize(): void {
     // console.log(window.innerWidth);
-    if (window.innerWidth < 992) {
+    if (window.innerWidth < 1000) {
       this.colsGrid = 1;
       this.colspan = [1, 1, 1];
     } else {

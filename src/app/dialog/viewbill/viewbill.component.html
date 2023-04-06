@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>Podgląd rachunku</h1>
+<div mat-dialog-content>
+
+
+
+  <mat-list>
+    <mat-list-item>Kategoria : {{billToView.paymentCategory?.name}} </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>Nr konta : {{billToView.paymentAccountNumber?.accountNumber}}</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>Odbiorca : {{billToView.paymentCategory?.recipient}} </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>Nr faktury/ tytuł zapłaty : {{billToView.invoiceNumber}} </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>Data wystawienia :	{{billToView.dateOfIssue}} </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>Termin płatności : {{billToView.dateOfPayment}}	</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>Data zapłaty :	 {{billToView.dueDate}} </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>Zapłacone : {{billToView.wasPaid?"Tak":"Nie"}} </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>Kwota : {{billToView.amount | currency:'zł'}}</mat-list-item>
+  </mat-list>
+
+
+
+
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-raised-button mat-dialog-close>Close</button>
+</div>
