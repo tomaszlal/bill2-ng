@@ -18,6 +18,8 @@ import { registerLocaleData } from '@angular/common';
 import localePL from '@angular/common/locales/pl';
 import { DeletebillComponent } from './dialog/deletebill/deletebill.component';
 import { ViewbillComponent } from './dialog/viewbill/viewbill.component';
+import { EditbillComponent } from './dialog/editbill/editbill.component';
+import { PaybillComponent } from './dialog/paybill/paybill.component';
 registerLocaleData(localePL);
 
 
@@ -30,7 +32,9 @@ registerLocaleData(localePL);
     BillComponent,
     AddbillComponent,
     DeletebillComponent,
-    ViewbillComponent
+    ViewbillComponent,
+    EditbillComponent,
+    PaybillComponent
   ],
   imports: [
     BrowserModule,

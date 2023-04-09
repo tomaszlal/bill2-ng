@@ -57,4 +57,9 @@ export class HttpService {
   public deleteBill(billId: number): Observable<boolean> {
     return this.http.delete<boolean>(this.apiUrl+"/del/bill/"+billId);
   }
+
+  //update rachunku
+  public updateBill(bill:Bill): Observable<Bill>{
+    return this.http.put<Bill>(this.apiUrl+"/update/bill", bill);
+  }
 }

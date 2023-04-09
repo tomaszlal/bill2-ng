@@ -9,6 +9,8 @@ import { DeletebillComponent } from '../dialog/deletebill/deletebill.component';
 import { Bill, AccountNumber, PaymentCategory } from '../model/data-model';
 import { HttpService } from '../service/http.service';
 import { ViewbillComponent } from '../dialog/viewbill/viewbill.component';
+import { EditbillComponent } from '../dialog/editbill/editbill.component';
+import { PaybillComponent } from '../dialog/paybill/paybill.component';
 
 @Component({
   selector: 'app-bill',
@@ -148,11 +150,11 @@ export class BillComponent implements OnInit {
 
   public deleteDialog(billToDelete: Bill): void {
     console.log(billToDelete);
-    const deleteBillDialog = this.dialog.open(DeletebillComponent,{data: {billToDelete: billToDelete}});
+    const deleteBillDialog = this.dialog.open(DeletebillComponent, { data: { billToDelete: billToDelete } });
     deleteBillDialog.afterClosed().subscribe((result) => {
       console.log(result);
       if (result.delete == true) {
-        this.httpService.deleteBill(result.id).subscribe((deleted)=> {
+        this.httpService.deleteBill(result.id).subscribe((deleted) => {
           //zostawiam w prostej postaci ale chyba trzeba zrobić formcontroller do kategorii z filtra
           //aby pobierać rachunki filtrowane po kategorii lub nie
           this.getBills()
@@ -163,10 +165,38 @@ export class BillComponent implements OnInit {
   }
 
   // wyswietlenie rachunku - podgląd
-  public viewDialog(billToView:Bill):void{
+  public viewDialog(billToView: Bill): void {
     console.log("podglad rachunku dziala");
     console.log(billToView);
     const dialogRef = this.dialog.open(ViewbillComponent, { data: { bill: billToView } });
+  }
+
+  //wyświetlenie okienka zapłąć rachunek
+  public payDialog(billToPay: Bill): void {
+    console.log("chyba zapłąciłem");
+    console.log(billToPay);
+    const dialogRef = this.dialog.open(PaybillComponent, { data: { bill: billToPay } });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != undefined) {
+        const billToUpdate: Bill = {
+          id: billToPay.id,
+          dueDate: result.dueDate,
+          wasPaid: true,
+          paymentCategory : billToPay.paymentCategory,
+          invoiceNumber: billToPay.invoiceNumber,
+          amount: billToPay.amount,
+          dateOfIssue: billToPay.dateOfIssue,
+          dateOfPayment: billToPay.dateOfPayment,
+          paymentAccountNumber: billToPay.paymentAccountNumber
+
+        }
+        this.httpService.updateBill(billToUpdate).subscribe(billUpdate => {
+          console.log(billUpdate);
+          this.getBills();
+        });
+
+      }
+    });
   }
 
 }

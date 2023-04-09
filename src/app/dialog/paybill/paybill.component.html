@@ -1,0 +1,42 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Wyślij przelew</mat-card-title>
+    <mat-card-subtitle>Wprowadź datę przelewu</mat-card-subtitle>
+  </mat-card-header>
+  <form [formGroup]="formPayBill">
+    <mat-card-content>
+
+
+      <!-- dalej pola formularza wstawiać poprawiać -->
+      <mat-form-field color="accent" class="example-full-width" appearance="outline">
+        <mat-label>Numer konta</mat-label>
+        <input type="text" matInput formControlName="accountNumber" readonly>
+      </mat-form-field>
+      <mat-form-field color="accent" class="example-full-width" appearance="outline">
+        <mat-label>Odbiorca</mat-label>
+        <input type="text" matInput formControlName="recipient" readonly>
+      </mat-form-field>
+      <mat-form-field color="accent" class="example-full-width" appearance="outline">
+        <mat-label>Numer faktury/tytuł zapłaty</mat-label>
+        <input type="text" matInput formControlName="invoice" readonly>
+      </mat-form-field>
+      <mat-form-field color="accent" class="example-full-width" appearance="outline">
+        <mat-label>Kwota do zapaty</mat-label>
+        <input type="text" matInput formControlName="amount" readonly>
+      </mat-form-field>
+      <mat-form-field color="accent" class="example-full-width" appearance="outline">
+        <mat-label>Data zapłaty</mat-label>
+        <input matInput [matDatepicker]="pickerIssue" formControlName="dueDate">
+        <mat-hint>MM.DD.YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="pickerIssue"></mat-datepicker-toggle>
+        <mat-datepicker #pickerIssue></mat-datepicker>
+      </mat-form-field>
+
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-button (click)="onNoClick()" mat-raised-button>Anuluj</button>
+    <button mat-button color="warn" (click)="sendUpdateBill()" [mat-dialog-close]="bill"  [disabled]="formPayBill.invalid" mat-raised-button>Zapisz</button>
+      <!--  [disabled]="formCategory.invalid" -->
+    </mat-card-actions>
+  </form>
+</mat-card>

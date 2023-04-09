@@ -80,7 +80,7 @@
             <button mat-icon-button color="accent"  matTooltip="Edycja rachunku"
               matTooltipPosition="above"><mat-icon>edit</mat-icon></button>
               <button *ngIf="!element.wasPaid" mat-icon-button color="accent"  matTooltip="Zapłać"
-              matTooltipPosition="above"><mat-icon>paid</mat-icon></button>
+              matTooltipPosition="above" (click)="payDialog(element)"><mat-icon>paid</mat-icon></button>
 
           </td>
         </ng-container>

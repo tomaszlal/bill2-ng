@@ -1,8 +1,5 @@
 <h1 mat-dialog-title>Podgląd rachunku</h1>
 <div mat-dialog-content>
-
-
-
   <mat-list>
     <mat-list-item>Kategoria : {{billToView.paymentCategory?.name}} </mat-list-item>
     <mat-divider></mat-divider>
@@ -22,11 +19,6 @@
     <mat-divider></mat-divider>
     <mat-list-item>Kwota : {{billToView.amount | currency:'zł'}}</mat-list-item>
   </mat-list>
-
-
-
-
-
 </div>
 <div mat-dialog-actions>
   <button mat-button mat-raised-button mat-dialog-close>Close</button>
