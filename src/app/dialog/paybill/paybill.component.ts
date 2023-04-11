@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { EditcategoryComponent } from '../editcategory/editcategory.component';
 import { Bill, DialogDataBill } from 'src/app/model/data-model';
 import { HttpService } from 'src/app/service/http.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-paybill',
@@ -11,6 +12,8 @@ import { HttpService } from 'src/app/service/http.service';
   styleUrls: ['./paybill.component.css']
 })
 export class PaybillComponent implements OnInit {
+
+  imageQRCodeUrl: string = environment.apiUrl+'/qrcode/';
 
   public formPayBill: FormGroup = new FormGroup({
     accountNumber: new FormControl('',),
@@ -32,6 +35,7 @@ export class PaybillComponent implements OnInit {
     this.formPayBill.controls['invoice'].setValue(data.bill?.invoiceNumber);
     this.formPayBill.controls['amount'].setValue(data.bill?.amount);
     this.formPayBill.controls['dueDate'].setValue(new Date());
+    this.imageQRCodeUrl = this.imageQRCodeUrl+data.bill?.id;
 
 
   }

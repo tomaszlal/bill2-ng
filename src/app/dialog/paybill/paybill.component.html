@@ -1,10 +1,13 @@
 <mat-card>
   <mat-card-header>
     <mat-card-title>Wyślij przelew</mat-card-title>
-    <mat-card-subtitle>Wprowadź datę przelewu</mat-card-subtitle>
+    <mat-card-subtitle>Zeskanuj kod QR przez aplikacje bankową lub skopiuj i wklej do przelewu. Nie zapomnij wprowadzić właściwej daty wysłania przelewu.</mat-card-subtitle>
   </mat-card-header>
   <form [formGroup]="formPayBill">
     <mat-card-content>
+      <div class="image">
+        <img [src]="imageQRCodeUrl" alt="">
+      </div>
 
 
       <!-- dalej pola formularza wstawiać poprawiać -->
